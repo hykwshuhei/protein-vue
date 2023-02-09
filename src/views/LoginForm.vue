@@ -1,5 +1,5 @@
 <script>
-import { supabase } from "../supabase";
+// import { supabase } from "../supabase";
 import HeaderCom from "../components/Header.vue";
 export default {
   name: "LoginForm",
@@ -13,24 +13,8 @@ export default {
       messageAlert: "",
     };
   },
-  methods: {
-    async submitForm() {
-      console.log(this.email);
-      console.log(this.password);
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: this.email,
-        password: this.password,
-      });
-      if (error) {
-        this.messageAlert =
-          "メールアドレス または パスワード が正しくありません";
-      } else {
-        this.messageAlert = "";
-      }
-      console.log(data);
-      console.log(error);
-    },
-  },
+
+
 };
 </script>
 
@@ -54,9 +38,6 @@ export default {
             required
             v-model="email"
           />
-          <!-- <p class="text-gray-600 text-xs italic">
-          半角英数字で8文字以上16文字以内で設定してください
-        </p> -->
         </div>
       </div>
       <div class="flex flex-wrap -mx-3 mb-6">

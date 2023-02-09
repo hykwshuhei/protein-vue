@@ -31,9 +31,10 @@ const router = createRouter({
       component: LoginForm,
     },
     {
-      path: "/detail",
+      path: "/detail/:id",
       name: "detail",
       component: ItemDetail,
+      props: true,
     },
   ],
 });
