@@ -1,6 +1,6 @@
-<script setup>
+<script>
 import { RouterLink, RouterView } from "vue-router";
-import HeaderCom from "./components/Header.vue";
+// import HeaderCom from "./components/Header.vue";
 </script>
 
 <template>

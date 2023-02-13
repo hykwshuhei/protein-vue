@@ -1,4 +1,4 @@
-// 使ってない
+<!-- 使ってない
 <script setup lang="ts">
 </script>
 
@@ -43,4 +43,4 @@
       </div>
     </main>
   </div>
-</template>
+</template> -->
