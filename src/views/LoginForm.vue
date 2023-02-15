@@ -1,5 +1,5 @@
-<script>
-// import { supabase } from "../supabase";
+<script lang="ts">
+import { supabase } from "../supabase";
 import HeaderCom from "../components/Header.vue";
 export default {
   name: "LoginForm",
@@ -13,8 +13,24 @@ export default {
       messageAlert: "",
     };
   },
-
-
+  methods: {
+    async submitForm() {
+      console.log(this.email);
+      console.log(this.password);
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: this.email,
+        password: this.password,
+      });
+      if (error) {
+        this.messageAlert =
+          "メールアドレス または パスワード が正しくありません";
+      } else {
+        this.messageAlert = "";
+      }
+      console.log(data);
+      console.log(error);
+    },
+  },
 };
 </script>
 

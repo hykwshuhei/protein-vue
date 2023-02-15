@@ -1,6 +1,18 @@
 <script lang="ts">
 import HeaderCom from "../components/Header.vue";
 import { supabase } from "../supabase";
+
+interface Item {
+  category: string;
+  content: string;
+  description: string;
+  flavor: string;
+  id: number;
+  imageUrl: string;
+  name: string;
+  price: number;
+}
+
 export default {
   name: "ListItem",
   components: {
@@ -8,19 +20,19 @@ export default {
   },
   data() {
     return {
-      items: [],
+      items: [] as Array<Item> | null,
     };
   },
   created: function () {
     (async () => {
-      let { data: items, error } = await supabase.from("items").select("*");
-      this.items = items;
-      console.log(items);
+      let { data, error } = await supabase.from("items").select("*");
+      this.items = data;
+      console.log(data);
       console.log(error);
     })();
   },
   methods: {
-    modStr(item) {
+    modStr(item: Item) {
       const str = item.description.substring(0, 23) + "...";
       return str;
     },

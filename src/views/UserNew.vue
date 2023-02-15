@@ -1,5 +1,5 @@
-<script>
-// import { supabase } from "../supabase";
+<script lang="ts">
+import { supabase } from "../supabase";
 import HeaderCom from "../components/Header.vue";
 import axios from "axios";
 export default {
@@ -39,7 +39,7 @@ export default {
         this.appeaPass = "";
       }
     },
-    async search(e) {
+    async search(e: Event) {
       const regPostCode = /^[0-9]{3}-[0-9]{4}$|^[0-9]{3}[0-9]{4}$/;
       if (regPostCode.test(this.postCode)) {
         let url = "http://zipcloud.ibsnet.co.jp/api/search?zipcode=";
@@ -58,7 +58,34 @@ export default {
           "郵便番号は〇〇〇-〇〇〇〇もしくは〇〇〇〇〇〇〇の形式で入力してください";
       }
     },
-    
+    async submitForm(e: Event) {
+      const regPostCode = /^[0-9]{3}-[0-9]{4}$|^[0-9]{3}[0-9]{4}$/;
+      if (!regPostCode.test(this.postCode)) {
+        e.preventDefault();
+        this.appeaPostCode =
+          "郵便番号は〇〇〇-〇〇〇〇もしくは〇〇〇〇〇〇〇の形式で入力してください";
+      }
+      const { data, error } = await supabase.auth.signUp({
+        email: this.email,
+        password: this.password,
+        // options: {
+        //   emailRedirectTo: "http://localhost:5173/login"
+        // },
+      });
+      if (!this.$options.data) {
+        alert("入力内容に不備があります");
+        // XXX
+        console.error("入力欄に不備あり");
+      } else {
+        // FIXME
+        Object.assign(this.$data, this.$options.data.call(this));
+        alert(
+          "入力されたメールアドレスへ認証のためのURLを送りました。URLを開くことによって認証が完了します。"
+        );
+      }
+      console.log(data);
+      console.log(error);
+    },
   },
 };
 </script>
@@ -83,7 +110,6 @@ export default {
             v-model="firstName"
             required
           />
-          <!-- <p class="text-red-500 text-xs italic">記入をお願いします</p> -->
         </div>
         <div class="w-full md:w-1/2 px-3">
           <label

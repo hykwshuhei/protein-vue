@@ -1,6 +1,5 @@
 <script lang="ts">
 import HeaderCom from "../components/Header.vue";
-import { supabase } from "../supabase";
 export default {
   name: "PurchaseItem",
   components: {

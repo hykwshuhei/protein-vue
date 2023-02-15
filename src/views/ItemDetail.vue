@@ -1,6 +1,18 @@
-<script>
+<script lang="ts">
 import HeaderCom from "../components/Header.vue";
 import { supabase } from "../supabase";
+
+type Item = {
+  category: string;
+  content: string;
+  description: string;
+  flavor: string;
+  id: number;
+  imageUrl: string;
+  name: string;
+  price: number;
+};
+
 export default {
   name: "ItemDetail",
   components: {
@@ -11,42 +23,47 @@ export default {
   },
   data() {
     return {
-      item: [],
-      flavor: [],
+      items: [] as Array<Item>,
+      flavor: [] as Array<String>,
       countity: 1,
-      price: "",
+      price: 0,
       itemName: "",
       flavorSelected: "",
     };
   },
   watch: {
     countity() {
-      this.price = this.item[0].price;
-      this.price *= this.countity;
+      if (!this.items) {
+        console.error("予期せぬ挙動");
+      } else {
+        this.price = this.items[0].price;
+        this.price *= this.countity;
+      }
     },
   },
   created: function () {
     (async () => {
-      let { data: item, error } = await supabase
+      let { data } = await supabase
         .from("items")
         .select("*")
         .eq("id", `${this.id}`);
-      this.item = item;
-      console.log(item);
-      console.log(error);
 
-      const i = await this.item[0];
-      const fla = await i.flavor.replace(/{|"|\\|}|/g, "");
-      const arrFlavor = await fla.split(",");
-      this.flavor = await arrFlavor;
-      console.log(this.flavor);
-      console.log(this.item);
+      if (!data) {
+        console.error("予期せぬ挙動");
+      } else {
+        this.items = data;
+        const i = await this.items[0];
+        const fla = await i.flavor.replace(/{|"|\\|}|/g, "");
+        const arrFlavor = await fla.split(",");
+        this.flavor = await arrFlavor;
+        console.log(this.flavor);
 
-      this.price = item[0].price;
+        this.price = i.price;
 
-      this.itemName = item[0].name;
+        this.itemName = i.name;
 
-      this.flavorSelected = arrFlavor[0];
+        this.flavorSelected = arrFlavor[0];
+      }
     })();
   },
 };
@@ -60,20 +77,20 @@ export default {
         <img
           alt="ecommerce"
           class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
-          :src="item[0].imageUrl"
+          :src="items[0].imageUrl"
         />
         <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
           <h2 class="text-sm title-font text-gray-500 tracking-widest mb-1">
             商品名
           </h2>
           <h1 class="text-gray-900 text-3xl title-font font-medium">
-            {{ item[0].name }}
+            {{ items[0].name }}
           </h1>
           <h2 class="text-gray-900 text-xl title-font font-medium mt-3">
-            ¥ {{ item[0].price }}円
+            ¥ {{ items[0].price }}円
           </h2>
           <div class="flex mb-4"></div>
-          <p class="leading-relaxed">{{ item[0].description }}</p>
+          <p class="leading-relaxed">{{ items[0].description }}</p>
           <div
             class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5"
           >
