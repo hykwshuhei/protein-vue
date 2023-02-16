@@ -1,5 +1,8 @@
 <script lang="ts">
+import { supabase } from "../supabase";
+// import { Session } from "@supabase/supabase-js";
 import HeaderCom from "../components/Header.vue";
+
 export default {
   name: "PurchaseItem",
   components: {
@@ -12,6 +15,10 @@ export default {
     return {
       //   id: "",
     };
+  },
+  created: function () {
+    const auth: any = supabase.auth;
+    const session = auth.session();
   },
 };
 </script>
@@ -67,7 +74,7 @@ export default {
                 </dd>
               </div>
               <div
-                class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
               >
                 <dt class="text-sm font-medium text-gray-500">
                   建物名・部屋番号

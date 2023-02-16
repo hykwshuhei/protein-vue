@@ -53,7 +53,7 @@ export default {
                 :to="{
                   name: 'list',
                 }"
-                class="text-gray-600"
+                class="text-gray-600 hover:bg-gray-200"
               >
                 買い物を続ける&nbsp;&nbsp;&nbsp;〉
               </RouterLink>

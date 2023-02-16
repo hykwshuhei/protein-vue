@@ -26,9 +26,14 @@ export default {
           "メールアドレス または パスワード が正しくありません";
       } else {
         this.messageAlert = "";
+        this.moveListItem();
       }
-      console.log(data);
-      console.log(error);
+    },
+    moveListItem() {
+      () =>
+        this.$router.push({
+          name: "ListItem",
+        });
     },
   },
 };
@@ -37,6 +42,29 @@ export default {
 <template>
   <div>
     <HeaderCom class="mb-7" />
+    <div>
+      <main>
+        <div
+          class="container mx-auto flex flex-wrap px-5 pb-5 pt-3 flex-col md:flex-row items-center"
+        >
+          <nav
+            class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center"
+          >
+            <div>
+              <button class="px-3 py-1 text-sm text-gray-500 font-bold rounded">
+                <RouterLink
+                  to="/new"
+                  class="hover:bg-white text-sm text-gray-500 font-bold"
+                >
+                  新規会員登録 〉
+                </RouterLink>
+              </button>
+            </div>
+          </nav>
+        </div>
+      </main>
+    </div>
+
     <form class="w-full max-w-lg mb-5 mx-auto" @submit.prevent="submitForm">
       <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full px-3">
