@@ -2,23 +2,28 @@
 import { supabase } from "../supabase";
 // import { Session } from "@supabase/supabase-js";
 import HeaderCom from "../components/Header.vue";
+import type { MetaData } from "../../types/type";
 
 export default {
   name: "PurchaseItem",
   components: {
     HeaderCom,
   },
-  //   props: {
-  //     id: String,
-  //   },
   data() {
     return {
-      //   id: "",
+      user_metadata: {} as MetaData,
     };
   },
-  created: function () {
-    const auth: any = supabase.auth;
-    const session = auth.session();
+  created: async function () {
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.getSession();
+    console.log(session);
+    if (session) {
+      this.user_metadata = session.user.user_metadata as MetaData;
+      console.log(this.user_metadata);
+    }
   },
 };
 </script>
@@ -44,7 +49,9 @@ export default {
               >
                 <dt class="text-sm font-medium text-gray-500">姓名</dt>
                 <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                  ここに姓名
+                  {{ user_metadata.firstName }}&nbsp;&nbsp;{{
+                    user_metadata.lastName
+                  }}
                 </dd>
               </div>
               <div
@@ -52,7 +59,7 @@ export default {
               >
                 <dt class="text-sm font-medium text-gray-500">郵便番号</dt>
                 <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                  ここに郵便番号
+                  〒&nbsp;{{ user_metadata.postCode }}
                 </dd>
               </div>
               <div
@@ -62,7 +69,7 @@ export default {
                   都道府県・市区町村
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                  ここに都道府県・市区町村
+                  {{ user_metadata.city }}{{ user_metadata.municipalities }}
                 </dd>
               </div>
               <div
@@ -70,17 +77,18 @@ export default {
               >
                 <dt class="text-sm font-medium text-gray-500">町域・番地</dt>
                 <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                  ここに町域・番地
+                  {{ user_metadata.address }}
                 </dd>
               </div>
               <div
+                v-if="user_metadata.building"
                 class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
               >
                 <dt class="text-sm font-medium text-gray-500">
                   建物名・部屋番号
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                  ここに建物名・部屋番号
+                  {{ user_metadata.building }}
                 </dd>
               </div>
               <div

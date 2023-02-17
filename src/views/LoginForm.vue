@@ -25,15 +25,10 @@ export default {
         this.messageAlert =
           "メールアドレス または パスワード が正しくありません";
       } else {
-        this.messageAlert = "";
-        this.moveListItem();
-      }
-    },
-    moveListItem() {
-      () =>
         this.$router.push({
-          name: "ListItem",
+          name: "list",
         });
+      }
     },
   },
 };

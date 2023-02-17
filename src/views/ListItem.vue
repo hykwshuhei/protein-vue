@@ -1,22 +1,14 @@
 <script lang="ts">
 import HeaderCom from "../components/Header.vue";
+import ChangeSession from "../components/ChangeSession.vue";
 import { supabase } from "../supabase";
-
-interface Item {
-  category: string;
-  content: string;
-  description: string;
-  flavor: string;
-  id: number;
-  imageUrl: string;
-  name: string;
-  price: number;
-}
+import type { Item } from "../../types/type";
 
 export default {
   name: "ListItem",
   components: {
     HeaderCom,
+    ChangeSession
   },
   data() {
     return {
@@ -42,6 +34,7 @@ export default {
 
 <template>
   <HeaderCom />
+  <ChangeSession />
   <div class="md:flex md:flex-wrap md:mx-auto">
     <div class="md:w-1/2" v-for="item in items" :key="item.id">
       <section class="text-gray-600 container pt-14 pb-4 flex flex-wrap">

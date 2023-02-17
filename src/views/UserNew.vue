@@ -68,9 +68,17 @@ export default {
       const { data, error } = await supabase.auth.signUp({
         email: this.email,
         password: this.password,
-        // options: {
-        //   emailRedirectTo: "http://localhost:5173/login"
-        // },
+        options: {
+          data: {
+            firstName: this.firstName,
+            lastName: this.lastName,
+            postCode: this.postCode,
+            city: this.city,
+            municipalities: this.municipalities,
+            address: this.address,
+            building: this.building,
+          },
+        },
       });
       if (!this.$options.data) {
         alert("入力内容に不備があります");
@@ -79,6 +87,7 @@ export default {
       } else {
         // FIXME
         Object.assign(this.$data, this.$options.data.call(this));
+        await this.$router.push({ name: "login" });
         alert(
           "入力されたメールアドレスへ認証のためのURLを送りました。URLを開くことによって認証が完了します。"
         );
