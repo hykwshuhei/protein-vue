@@ -3,6 +3,7 @@ import { supabase } from "../supabase";
 // import { Session } from "@supabase/supabase-js";
 import HeaderCom from "../components/Header.vue";
 import type { MetaData } from "../../types/type";
+import route from "../router";
 
 export default {
   name: "PurchaseItem",
@@ -12,6 +13,10 @@ export default {
   data() {
     return {
       user_metadata: {} as MetaData,
+      userUid: "",
+      itemId: "",
+      flavor: "",
+      countity: "",
     };
   },
   created: async function () {
@@ -22,8 +27,33 @@ export default {
     console.log(session);
     if (session) {
       this.user_metadata = session.user.user_metadata as MetaData;
+      this.userUid = session.user.id;
       console.log(this.user_metadata);
     }
+    // 型ガードして、data()に代入
+    if (
+      typeof this.$route.query.id === "string" &&
+      typeof this.$route.query.flavor === "string" &&
+      typeof this.$route.query.countity === "string"
+    ) {
+      this.itemId = this.$route.query.id;
+      this.flavor = this.$route.query.flavor;
+      this.countity = this.$route.query.countity;
+    }
+  },
+  methods: {
+    purchase(e: Event) {
+      e.preventDefault();
+      let userUid = this.userUid;
+      let itemId = this.$route.query.id;
+      let flavor = this.$route.query.flavor;
+      let countity = this.$route.query.countity;
+      (async () => {
+        await supabase
+          .from("vuePurchaseHistories")
+          .insert({ userUid, itemId, flavor, countity });
+      })();
+    },
   },
 };
 </script>
@@ -128,6 +158,7 @@ export default {
               >合計：{{ $route.query.price }}円</span
             >
             <button
+              @click="purchase"
               class="flex ml-auto text-white bg-blue-400 border-0 py-2 px-3 focus:outline-none hover:bg-indigo-600 rounded mr-3"
             >
               <RouterLink
