@@ -34,7 +34,7 @@ export default {
 </script>
 
 <template>
-  <HeaderCom class="-mb-11" />
+  <!-- <HeaderCom /> -->
   <section v-if="user_metadata.firstName">
     <div class="flex pt-1 flex-row-reverse">
       <nav class="flex text-base">

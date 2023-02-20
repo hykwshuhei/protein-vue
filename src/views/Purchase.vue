@@ -45,9 +45,9 @@ export default {
     purchase(e: Event) {
       e.preventDefault();
       let userUid = this.userUid;
-      let itemId = this.$route.query.id;
-      let flavor = this.$route.query.flavor;
-      let countity = this.$route.query.countity;
+      let itemId = this.itemId;
+      let flavor = this.flavor;
+      let countity = this.countity;
       (async () => {
         await supabase
           .from("vuePurchaseHistories")

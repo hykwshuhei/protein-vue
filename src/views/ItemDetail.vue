@@ -101,7 +101,7 @@ export default {
 </script>
 
 <template>
-  <HeaderCom class="-mb-11" />
+  <HeaderCom />
   <section v-if="user_metadata.firstName">
     <div class="flex pt-1 flex-row-reverse mt-10">
       <nav class="flex text-base">
@@ -325,7 +325,9 @@ export default {
               購入する
             </button>
           </div>
-          <p class="text-right text-red-500 text-lg">{{ msgNeedlogin1 }}<br>{{ msgNeedlogin2 }}</p>
+          <p class="text-right text-red-500 text-lg">
+            {{ msgNeedlogin1 }}<br />{{ msgNeedlogin2 }}
+          </p>
         </div>
       </div>
     </div>
