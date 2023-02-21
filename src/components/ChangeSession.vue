@@ -34,7 +34,6 @@ export default {
 </script>
 
 <template>
-  <!-- <HeaderCom /> -->
   <section v-if="user_metadata.firstName">
     <div class="flex pt-1 flex-row-reverse">
       <nav class="flex text-base">
@@ -45,7 +44,7 @@ export default {
           >
             <RouterLink
               to="/login"
-              class="hover:bg-white text-sm text-gray-500 font-bold"
+              class="hover:bg-white text-base text-gray-500 font-bold"
             >
               ログアウト 〉
             </RouterLink>
@@ -61,7 +60,7 @@ export default {
           <button class="py-1 text-sm text-gray-500 font-bold rounded">
             <RouterLink
               to="/login"
-              class="hover:bg-white text-sm text-gray-500 font-bold"
+              class="hover:bg-white text-base text-gray-500 font-bold"
             >
               ログイン 〉
             </RouterLink>

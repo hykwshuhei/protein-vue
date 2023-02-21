@@ -5,6 +5,7 @@ import ListItem from "../views/ListItem.vue";
 import ItemDetail from "../views/ItemDetail.vue";
 import Purchase from "../views/Purchase.vue";
 import Purchased from "../views/Purchased.vue";
+import OrderHistory from "@/views/OrderHistory.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,6 +49,12 @@ const router = createRouter({
       path: "/purchased",
       name: "purchased",
       component: Purchased,
+      // props: true,
+    },
+    {
+      path: "/history",
+      name: "history",
+      component: OrderHistory,
       // props: true,
     },
   ],
