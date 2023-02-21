@@ -3,7 +3,6 @@ import { supabase } from "../supabase";
 // import { Session } from "@supabase/supabase-js";
 import HeaderCom from "../components/Header.vue";
 import type { MetaData } from "../../types/type";
-import route from "../router";
 
 export default {
   name: "PurchaseItem",
