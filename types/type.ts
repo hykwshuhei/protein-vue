@@ -29,4 +29,15 @@ type Item = {
   price: number;
 };
 
+type PurchaseHistories = {
+  category: string;
+  content: string;
+  description: string;
+  flavor: string;
+  id: number;
+  imageUrl: string;
+  name: string;
+  price: number;
+};
+
 export type { MetaData, Item };
