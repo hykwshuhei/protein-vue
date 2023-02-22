@@ -85,8 +85,21 @@ export default {
         // XXX
         console.error("入力欄に不備あり");
       } else {
+        this.firstName = "";
+        this.lastName = "";
+        this.email = "";
+        this.password = "";
+        this.confirmPass = "";
+        this.postCode = "";
+        this.postMessage = "";
+        this.city = "";
+        this.municipalities = "";
+        this.address = "";
+        this.building = "";
+        this.appeaPostCode = "";
+        this.appeaPass = "";
         // FIXME
-        Object.assign(this.$data, this.$options.data.call(this));
+        // Object.assign(this.$data, this.$options.data.call(this));
         await this.$router.push({ name: "login" });
         alert(
           "入力されたメールアドレスへ認証のためのURLを送りました。URLを開くことによって認証が完了します。"

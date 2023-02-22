@@ -1,6 +1,7 @@
 <script lang="ts">
 import HeaderCom from "../components/Header.vue";
 import { supabase } from "../supabase";
+import type { PurchaseHistories, HistoryItem } from "../../types/type";
 
 export default {
   neme: "PurchaseHistory",
@@ -10,8 +11,8 @@ export default {
   data() {
     return {
       userUid: "",
-      purchaseHistories: [] as any,
-      items: [] as any,
+      purchaseHistories: [] as Array<PurchaseHistories> | null,
+      items: [] as Array<HistoryItem>,
     };
   },
   created:
@@ -22,33 +23,31 @@ export default {
           data: { session },
           error,
         } = await supabase.auth.getSession();
-        console.log(session);
         if (session) {
-          console.log(session.user.id);
           this.userUid = session.user.id;
           // 購入商品データ取得
-          let { data, error } = await supabase
+          let { data: purchaseHistories, error } = await supabase
             .from("vuePurchaseHistories")
             .select("*")
             .eq("userUid", this.userUid);
-          console.log(data);
-          this.purchaseHistories = data;
+          this.purchaseHistories = purchaseHistories;
           // 商品idから商品名、商品画像URL、商品価格データ取得
-          this.items = await Promise.all(
-            this.purchaseHistories.map(async (i: any) => {
-              let { data } = await supabase
-                .from("items")
-                .select("*")
-                .eq("id", i.itemId);
-              console.log(data[0]);
-              i.itemImgUrl = data[0].imageUrl;
-              i.itemName = data[0].name;
-              i.itemPrice = data[0].price;
-              console.log(i);
-              return i;
-            })
-          );
-          console.log(this.items);
+          if (this.purchaseHistories) {
+            this.items = await Promise.all(
+              this.purchaseHistories.map(async (i: any) => {
+                let { data } = await supabase
+                  .from("items")
+                  .select("*")
+                  .eq("id", i.itemId);
+                if (data) {
+                  i.itemImgUrl = data[0].imageUrl;
+                  i.itemName = data[0].name;
+                  i.itemPrice = data[0].price;
+                  return i;
+                }
+              })
+            );
+          }
         }
       })();
     },
@@ -70,7 +69,7 @@ export default {
         <div
           class="lg:w-2/3 mx-auto flex flex-wrap"
           v-for="item in items"
-          :key="items.id"
+          :key="item.id"
         >
           <img
             alt="ecommerce"
@@ -109,9 +108,9 @@ export default {
               >
                 <dt class="text-sm font-medium text-gray-500">合計</dt>
                 <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                  {{ item.itemPrice * item.countity }}円（1商品あたり{{
-                    item.itemPrice
-                  }}円)
+                  {{
+                    Number(item.itemPrice) * Number(item.countity)
+                  }}円（1商品あたり{{ item.itemPrice }}円)
                 </dd>
               </div>
 

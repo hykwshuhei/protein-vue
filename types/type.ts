@@ -30,14 +30,22 @@ type Item = {
 };
 
 type PurchaseHistories = {
-  category: string;
-  content: string;
-  description: string;
-  flavor: string;
   id: number;
-  imageUrl: string;
-  name: string;
-  price: number;
+  userUid: string;
+  itemId: string;
+  flavor: string;
+  countity: string;
 };
 
-export type { MetaData, Item };
+type HistoryItem = {
+  id: number;
+  userUid: string;
+  itemId: string;
+  flavor: string;
+  countity: string;
+  itemImgUrl: string;
+  itemName: string;
+  itemPrice: string;
+};
+
+export type { MetaData, Item, PurchaseHistories, HistoryItem };
