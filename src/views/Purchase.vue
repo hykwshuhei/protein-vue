@@ -23,7 +23,6 @@ export default {
       data: { session },
       error,
     } = await supabase.auth.getSession();
-    console.log(session);
     if (session) {
       this.user_metadata = session.user.user_metadata as MetaData;
       this.userUid = session.user.id;
@@ -157,7 +156,7 @@ export default {
             </div>
             <div class="flex">
               <span class="title-font font-medium text-2xl text-gray-900"
-                >合計：{{ $route.query.price }}円</span
+                >合計：{{ $route.query.price }}円(税込)</span
               >
               <button
                 @click="purchase"

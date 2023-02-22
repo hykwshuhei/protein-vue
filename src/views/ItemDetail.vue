@@ -156,7 +156,7 @@ export default {
               {{ items[0].name }}
             </h1>
             <h2 class="text-gray-900 text-xl title-font font-medium mt-3">
-              ¥ {{ items[0].price }}円
+              ¥ {{ items[0].price }}円(税込)
             </h2>
             <div class="flex mb-4"></div>
             <p class="leading-relaxed">{{ items[0].description }}</p>
@@ -223,7 +223,7 @@ export default {
             </div>
             <div class="flex">
               <span class="title-font font-medium text-2xl text-gray-900"
-                >合計：{{ price }}円</span
+                >合計：{{ price }}円(税込)</span
               >
               <button
                 @click="purchse()"
@@ -240,7 +240,7 @@ export default {
         <div class="lg:w-4/5 mx-auto flex flex-wrap">
           <img
             alt="ecommerce"
-            class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+            class="lg:w-1/2 w-2/3 lg:h-auto h-2/3 object-cover object-center rounded mx-auto"
             :src="items[0].imageUrl"
           />
           <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
@@ -251,7 +251,7 @@ export default {
               {{ items[0].name }}
             </h1>
             <h2 class="text-gray-900 text-xl title-font font-medium mt-3">
-              ¥ {{ items[0].price }}円
+              ¥ {{ items[0].price }}円(税込)
             </h2>
             <div class="flex mb-4"></div>
             <p class="leading-relaxed">{{ items[0].description }}</p>
@@ -318,7 +318,7 @@ export default {
             </div>
             <div class="flex">
               <span class="title-font font-medium text-2xl text-gray-900"
-                >合計：{{ price }}円</span
+                >合計：{{ price }}円(税込)</span
               >
               <button
                 @click="purchse()"

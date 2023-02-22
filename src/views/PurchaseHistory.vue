@@ -106,7 +106,7 @@ export default {
               <div
                 class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
               >
-                <dt class="text-sm font-medium text-gray-500">合計</dt>
+                <dt class="text-sm font-medium text-gray-500">合計(税込)</dt>
                 <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                   {{
                     Number(item.itemPrice) * Number(item.countity)
@@ -127,7 +127,7 @@ export default {
             </dl>
           </div>
         </div>
-        <div class="border-b-2 border-blue-400 px-auto mx-auto"></div>
+        <div class="border-b-2 border-blue-400 px-auto mx-auto mb-12"></div>
       </div>
     </section>
   </div>

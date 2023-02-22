@@ -58,7 +58,7 @@ export default {
                   {{ item.name }}
                 </h1>
                 <h2 class="title-font font-medium text-gray-900 mb-2">
-                  ¥ {{ item.price }}円
+                  ¥ {{ item.price }}円(税込)
                 </h2>
                 <p class="leading-relaxed mb-3">{{ modStr(item) }}</p>
                 <div class="flex items-center flex-wrap">

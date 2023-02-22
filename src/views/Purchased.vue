@@ -32,8 +32,15 @@ export default {
             ></path>
             <spn class="ml-4 flex items-start flex-col leading-none">
               <!-- <span class="text-xs text-gray-600 mb-1">GET IT ON</span> -->
-              <span class="title-font font-medium"
-                >購入履歴&nbsp;&nbsp;&nbsp;〉
+              <span class="title-font font-medium">
+                <RouterLink
+                  :to="{
+                    name: 'history',
+                  }"
+                  class="text-gray-600 hover:bg-gray-200"
+                >
+                  購入履歴&nbsp;&nbsp;&nbsp;〉
+                </RouterLink>
               </span>
             </spn>
           </button>
