@@ -19,8 +19,8 @@ export default {
     (async () => {
       let { data, error } = await supabase.from("items").select("*");
       this.items = data;
-      console.log(data);
-      console.log(error);
+      // console.log(data);
+      // console.log(error);
     })();
   },
   methods: {

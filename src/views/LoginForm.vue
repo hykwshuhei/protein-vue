@@ -15,8 +15,8 @@ export default {
   },
   methods: {
     async submitForm() {
-      console.log(this.email);
-      console.log(this.password);
+      // console.log(this.email);
+      // console.log(this.password);
       const { data, error } = await supabase.auth.signInWithPassword({
         email: this.email,
         password: this.password,
@@ -79,6 +79,7 @@ export default {
               placeholder="1234@example.com"
               required
               v-model="email"
+              data-email
             />
           </div>
         </div>
@@ -99,6 +100,7 @@ export default {
               pattern=".{8,16}"
               title="半角英数字で8文字以上16文字以下"
               v-model="password"
+              data-password
             />
             <p class="text-gray-600 text-xs italic">
               半角英数字で8文字以上16文字以下
@@ -106,7 +108,7 @@ export default {
           </div>
         </div>
 
-        <p class="text-red-500 mb-5">
+        <p id="message" class="text-red-500 mb-5">
           {{ messageAlert }}
         </p>
 

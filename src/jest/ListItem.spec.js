@@ -1,13 +1,11 @@
+//未完
 import { shallowMount } from "@vue/test-utils";
-import LoginForm from "../views/LoginForm.vue";
+import ListItem from "../views/ListItem.vue";
 
-test("メアド、パスワード入力後の動作テスト", async () => {
-  const wrapper = shallowMount(LoginForm);
+test("Supabaseから商品データ取得できているかのテスト", async () => {
+  const wrapper = shallowMount(ListItem);
 
-  await wrapper.setData({
-    email: "hykwshuhei@gmail.com",
-    password: "Vaga7326",
-  });
+  await wrapper.vm.$nextTick();
 
-  expect(wrapper.vm.messageAlert).toBe("");
+  expect(wrapper.vm.items).toHaveLength(18);
 });
