@@ -3,6 +3,9 @@ import UserNew from "../views/UserNew.vue";
 import LoginForm from "../views/LoginForm.vue";
 import ListItem from "../views/ListItem.vue";
 import ItemDetail from "../views/ItemDetail.vue";
+import Purchase from "../views/Purchase.vue";
+import Purchased from "../views/Purchased.vue";
+import PurchaseHistory from "@/views/PurchaseHistory.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,6 +38,24 @@ const router = createRouter({
       name: "detail",
       component: ItemDetail,
       props: true,
+    },
+    {
+      path: "/purchase",
+      name: "purchase",
+      component: Purchase,
+      // props: true,
+    },
+    {
+      path: "/purchased",
+      name: "purchased",
+      component: Purchased,
+      // props: true,
+    },
+    {
+      path: "/history",
+      name: "history",
+      component: PurchaseHistory,
+      // props: true,
     },
   ],
 });

@@ -1,13 +1,11 @@
-<script>
-import { RouterLink, RouterView } from "vue-router";
+<script lang="ts">
+import { RouterView } from "vue-router";
 // import HeaderCom from "./components/Header.vue";
+export default {
+  name: "App",
+};
 </script>
 
 <template>
-  <div>
-    <RouterView />
-  </div>
+  <RouterView />
 </template>
-
-<style scoped>
-</style>

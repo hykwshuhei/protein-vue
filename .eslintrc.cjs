@@ -8,8 +8,13 @@ module.exports = {
     "eslint:recommended",
     "@vue/eslint-config-typescript",
     "@vue/eslint-config-prettier",
+    //testやexpectがエラーにならないよう追記
+    "plugin:jest/recommended",
   ],
   parserOptions: {
     ecmaVersion: "latest",
+  },
+  env: {
+    node: true, // <- 追加
   },
 };
