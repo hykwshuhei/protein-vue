@@ -172,6 +172,7 @@ export default {
                 </RouterLink>
               </button>
               <button
+                id="back"
                 class="bg-gray-300 border-0 py-2 px-3 focus:outline-none hover:bg-gray-400 rounded"
               >
                 <a @click="$router.back()" class="text-white"> キャンセル </a>
