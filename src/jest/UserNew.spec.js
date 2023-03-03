@@ -1,3 +1,4 @@
+//エラー：wrapper.vm.contains is not a function
 import { mount } from "@vue/test-utils";
 import UserNew from "../views/UserNew.vue";
 
