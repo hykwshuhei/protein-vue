@@ -78,7 +78,7 @@ export default {
       supabase.auth.signOut();
       alert("ログアウトしました");
     },
-    purchse() {
+    purchase() {
       if (!this.user_metadata.firstName) {
         this.msgNeedlogin1 = "ログイン後に購入可能となります。";
         this.msgNeedlogin2 =
@@ -227,7 +227,7 @@ export default {
               >
               <button
                 id="purchase"
-                @click="purchse()"
+                @click="purchase()"
                 class="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"
               >
                 購入する
@@ -322,8 +322,9 @@ export default {
                 >合計：{{ price }}円(税込)</span
               >
               <button
-                @click="purchse()"
+                @click="purchase()"
                 class="flex ml-auto text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"
+                data-test="purchase-button"
               >
                 購入する
               </button>

@@ -5,7 +5,7 @@ import ListItem from "../views/ListItem.vue";
 import ItemDetail from "../views/ItemDetail.vue";
 import Purchase from "../views/Purchase.vue";
 import Purchased from "../views/Purchased.vue";
-import PurchaseHistory from "@/views/PurchaseHistory.vue";
+import PurchaseHistory from "../views/PurchaseHistory.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
