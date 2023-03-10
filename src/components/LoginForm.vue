@@ -1,11 +1,11 @@
 <script lang="ts">
 import { supabase } from "../supabase";
-import HeaderCom from "../components/Header.vue";
+// import HeaderCom from "../components/Header.vue";
 export default {
   name: "LoginForm",
-  components: {
-    HeaderCom,
-  },
+  //   components: {
+  //     HeaderCom,
+  //   },
   data() {
     return {
       email: "",
@@ -22,10 +22,11 @@ export default {
       if (error) {
         this.messageAlert =
           "メールアドレス または パスワード が正しくありません";
-      } else {
-        this.$router.push({
-          name: "list",
-        });
+        //   } else {
+        //     this.$router.push({
+        //       name: "list",
+        //     });
+        //   }
       }
     },
   },
@@ -34,7 +35,7 @@ export default {
 
 <template>
   <div class="min-h-screen w-screen">
-    <HeaderCom class="mb-7 w-screen" />
+    <!-- <HeaderCom class="mb-7 w-screen" /> -->
     <div class="w-5/6 mx-auto">
       <div>
         <main>

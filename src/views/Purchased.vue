@@ -1,7 +1,8 @@
 <script lang="ts">
 import HeaderCom from "../components/Header.vue";
 export default {
-  name: "PurchaseItem",
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: "Purchased",
   components: {
     HeaderCom,
   },
@@ -38,6 +39,7 @@ export default {
                     name: 'history',
                   }"
                   class="text-gray-600 hover:bg-gray-200"
+                  data-testid="purchase-history-button"
                 >
                   購入履歴&nbsp;&nbsp;&nbsp;〉
                 </RouterLink>
